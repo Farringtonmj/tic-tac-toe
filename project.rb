@@ -19,9 +19,6 @@ class Tutorial < Gosu::Window
 
         @xTurn = true
 
-        # @xWin = false
-        # @oWin = false
-
         @pos = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         @drwspts= [80, 20, 265, 20, 445, 20, 80, 165, 265, 165, 445, 165, 80, 310, 265, 310, 445, 310]
     end
@@ -36,47 +33,47 @@ class Tutorial < Gosu::Window
 
         if Gosu.button_down? Gosu::MS_LEFT
             if @xTurn
-                if squareNumber(@mouse_x, @mouse_y) == 1
+                if squareNumber(@mouse_x, @mouse_y) == 1 && @pos[0] == 0
                     @pos[0] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 2  && @pos[1] == 0
                     @pos[1] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 3
+                elsif squareNumber(@mouse_x, @mouse_y) == 3 && @pos[2] == 0
                     @pos[2] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 4
+                elsif squareNumber(@mouse_x, @mouse_y) == 4 && @pos[3] == 0
                     @pos[3] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 5
+                elsif squareNumber(@mouse_x, @mouse_y) == 5 && @pos[4] == 0
                     @pos[4] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 6
+                elsif squareNumber(@mouse_x, @mouse_y) == 6 && @pos[5] == 0
                     @pos[5] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 7
+                elsif squareNumber(@mouse_x, @mouse_y) == 7 && @pos[6] == 0
                     @pos[6] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 8
+                elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[7] == 0
                     @pos[7] = 1
-                elsif squareNumber(@mouse_x, @mouse_y) == 9
+                elsif squareNumber(@mouse_x, @mouse_y) == 9 && @pos[8] == 0
                     @pos[8] = 1
                 end
                 @xTurn = false
             elsif !@xTurn
-                if squareNumber(@mouse_x, @mouse_y) == 1
+                if squareNumber(@mouse_x, @mouse_y) == 1 && @pos[0] == 0
                     @pos[0] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 2 && @pos[1] == 0
                     @pos[1] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 3
+                elsif squareNumber(@mouse_x, @mouse_y) == 3 && @pos[2] == 0
                     @pos[2] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 4
+                elsif squareNumber(@mouse_x, @mouse_y) == 4 && @pos[3] == 0
                     @pos[3] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 5
+                elsif squareNumber(@mouse_x, @mouse_y) == 5 && @pos[4] == 0
                     @pos[4] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 6
+                elsif squareNumber(@mouse_x, @mouse_y) == 6 && @pos[5] == 0
                     @pos[5] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 7
+                elsif squareNumber(@mouse_x, @mouse_y) == 7 && @pos[6] == 0
                     @pos[6] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 8
+                elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[7] == 0
                     @pos[7] = 2
-                elsif squareNumber(@mouse_x, @mouse_y) == 9
+                elsif squareNumber(@mouse_x, @mouse_y) == 9 && @pos[8] == 0
                     @pos[8] = 2
                 end
-                @xturn = true
+                @xTurn = true
             end
         end
     end
