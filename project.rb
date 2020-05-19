@@ -19,12 +19,11 @@ class Tutorial < Gosu::Window
 
         @xTurn = true
 
-        @xWin = false
-        @oWin = false
+        # @xWin = false
+        # @oWin = false
 
         @pos = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         @drwspts= [80, 20, 265, 20, 445, 20, 80, 165, 265, 165, 445, 165, 80, 310, 265, 310, 445, 310]
-        
     end
 
     def needs_cursor?
@@ -36,8 +35,7 @@ class Tutorial < Gosu::Window
         @mouse_y = mouse_y
 
         if Gosu.button_down? Gosu::MS_LEFT
-            if @xTurn == true
-                @xTurn = false
+            if @xTurn
                 if squareNumber(@mouse_x, @mouse_y) == 1
                     @pos[0] = 1
                 elsif squareNumber(@mouse_x, @mouse_y) == 2
@@ -57,8 +55,28 @@ class Tutorial < Gosu::Window
                 elsif squareNumber(@mouse_x, @mouse_y) == 9
                     @pos[8] = 1
                 end
-            else
-                @xTurn = true
+                @xTurn = false
+            elsif !@xTurn
+                if squareNumber(@mouse_x, @mouse_y) == 1
+                    @pos[0] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 2
+                    @pos[1] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 3
+                    @pos[2] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 4
+                    @pos[3] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 5
+                    @pos[4] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 6
+                    @pos[5] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 7
+                    @pos[6] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 8
+                    @pos[7] = 2
+                elsif squareNumber(@mouse_x, @mouse_y) == 9
+                    @pos[8] = 2
+                end
+                @xturn = true
             end
         end
     end
@@ -91,48 +109,7 @@ class Tutorial < Gosu::Window
         end
         return sqrnum
     end
-
-
-    def win 
-        if @pos[0] == 1  @pos[1] == 1  @pos[2] == 1
-            @xWin = true
-        elsif @pos[3] == 1 & @pos[4] == 1 & @pos[5] == 1
-            @xWin = true
-        elsif @pos[6] == 1 & @pos[7] == 1 & @pos[8] == 1
-            @xWin = true
-        elsif @pos[0] == 1 & @pos[3] == 1 & @pos[6] == 1
-            @xWin = true
-        elsif @pos[1] == 1 & @pos[4] == 1 & @pos[7] == 1
-            @xWin = true
-        elsif @pos[2] == 1 & @pos[5] == 1 & @pos[8] == 1
-            @xWin = true
-        elsif @pos[0] == 1 & @pos[5] == 1 & @pos[8] == 1
-            @xWin = true
-        elsif @pos[2] == 1 & @pos[5] == 1 & @pos[7] == 1
-            @xWin = true
-        elsif @pos[0] == 2 & @pos[1] == 2 & @pos[2] == 2
-            @oWin = true
-        elsif @pos[3] == 2 & @pos[4] == 2 & @pos[5] == 2
-            @oWin = true
-        elsif @pos[6] == 2 & @pos[7] == 2 & @pos[8] == 2
-            @oWin = true
-        elsif @pos[0] == 2 & @pos[3] == 2 & @pos[6] == 21
-            @oWin = true
-        elsif @pos[1] == 2 & @pos[4] == 2 & @pos[7] == 2
-            @oWin = true
-        elsif @pos[2] == 2 & @pos[5] == 2 & @pos[8] == 2
-            @oWin = true
-        elsif @pos[0] == 2 & @pos[5] == 2 & @pos[8] == 2
-            @oWin = true
-        elsif @pos[2] == 2 & @pos[5] == 2 & @pos[7] == 2
-            @oWin = true
-        end
-    end
             
-            
-
-
-
 
 
     def draw
@@ -142,15 +119,15 @@ class Tutorial < Gosu::Window
             y = x*2
             if @pos[x] == 1 
                 @font.draw_text("X", @drwspts[y], @drwspts[(y+1)], ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
-            # elsif @pos[x] == 2
-            #     @font.draw_text("O", @drwspts[y], @drwspts[(y + 1)], ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
+            elsif @pos[x] == 2
+                @font.draw_text("O", @drwspts[y], @drwspts[(y + 1)], ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
             end
         end
-        if @xWin
-            @font.draw_text("X WINS!!!", 320, 240, ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
-        elsif @oWin
-            @font.draw_text("O WINS!!!", 320, 240, ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
-        end        
+        # if @xWin
+        #     @font.draw_text("X WINS!!!", 320, 240, ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
+        # elsif @oWin
+        #     @font.draw_text("O WINS!!!", 320, 240, ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
+        # end        
     end
 end
 
