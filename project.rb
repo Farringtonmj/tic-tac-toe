@@ -25,7 +25,7 @@ class Tutorial < Gosu::Window
         @displayO = 0
 
         @pos = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        @temp = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        @temp = 1
         @drwspts= [80, 20, 265, 20, 445, 20, 80, 165, 265, 165, 445, 165, 80, 310, 265, 310, 445, 310]
     end
 
@@ -105,7 +105,10 @@ class Tutorial < Gosu::Window
 
         if Gosu.button_down? Gosu::MS_LEFT
             if @xTurn
-                @pos[squareNumber(@mouse_x, @mouse_y)] = 1
+                if @pos[squareNumber(@mouse_x, @mouse_y)] == 0
+                    @pos[squareNumber(@mouse_x, @mouse_y)] = 1
+                    @xTurn = false
+                end
                 # if squareNumber(@mouse_x, @mouse_y) == 0 && @pos[0] == 0
                 #     @pos[0] = 1
                 # elsif squareNumber(@mouse_x, @mouse_y) == 1  && @pos[1] == 0
@@ -125,11 +128,11 @@ class Tutorial < Gosu::Window
                 # elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[8] == 0
                 #     @pos[8] = 1
                 # end
-                if @temp != @pos
-                    @xTurn = false
-                end
             elsif !@xTurn
-                @pos[squareNumber(@mouse_x, @mouse_y)] = 2
+                if @pos[squareNumber(@mouse_x, @mouse_y)] == 0
+                    @pos[squareNumber(@mouse_x, @mouse_y)] = 2
+                    @xTurn = true
+                end
                 # if squareNumber(@mouse_x, @mouse_y) == 0 && @pos[0] == 0
                 #     @pos[0] = 2
                 # elsif squareNumber(@mouse_x, @mouse_y) == 1 && @pos[1] == 0
@@ -149,12 +152,8 @@ class Tutorial < Gosu::Window
                 # elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[8] == 0
                 #     @pos[8] = 2
                 # end
-                if @temp != @pos
-                    @xTurn = true
-                end
             end
         end 
-        @temp = @pos
     end
 
     def squareNumber(x, y)
