@@ -184,7 +184,7 @@ class Tutorial < Gosu::Window
 
     def draw
         @background_image.draw(0,0,ZOrder::BACKGROUND, scale_x=1.1, scale_y =0.8)
-        @font.draw_text("#{@pos[0]}, #{@pos[1]}, #{@pos[2]}, #{@pos[3]}, #{@pos[4]}, #{@pos[5]}, #{@pos[6]}, #{@pos[7]}, #{@pos[8]}", 20, 20, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
+        # @font.draw_text("#{@pos[0]}, #{@pos[1]}, #{@pos[2]}, #{@pos[3]}, #{@pos[4]}, #{@pos[5]}, #{@pos[6]}, #{@pos[7]}, #{@pos[8]}", 20, 20, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
         # @font.draw_text("#{@xTurn}", 20, 70, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
         @pos.size.times do |x|
             y = x*2
@@ -195,15 +195,15 @@ class Tutorial < Gosu::Window
             end
         end
         while @displayX != 0
-            @font.draw_text("X Wins!", 320, 240, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
+            @font.draw_text("X Wins!", 320, 240, ZOrder::LETTERS, 1, 1, Gosu::Color::BLUE)
             @displayX -= 1
         end
         while @displayO != 0
             @font.draw_text("O Wins!", 320, 240, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
             @displayO -= 1
         end
-        @font.draw_text("X: #{@xWins}", 20, 50, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
-        @font.draw_text("O: #{@oWins}", 20, 70, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
+        @font.draw_text("X: #{@xWins}", 20, 50, ZOrder::LETTERS, 5, 5, Gosu::Color::BLUE)
+        @font.draw_text("O: #{@oWins}", 20, 70, ZOrder::LETTERS, 5, 5, Gosu::Color::RED)
     end
 end
 
