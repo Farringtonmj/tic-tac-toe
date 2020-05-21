@@ -19,13 +19,14 @@ class Tutorial < Gosu::Window
 
         @xWins = 0
         @oWins = 0
+        @draws = 0
+        @temp = 0
         @tempXWins = 0
         @tempOWins = 0
-        @displayX = 0
-        @displayO = 0
+        @display = 0
+
 
         @pos = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        @temp = 1
         @drwspts= [80, 20, 265, 20, 445, 20, 80, 165, 265, 165, 445, 165, 80, 310, 265, 310, 445, 310]
     end
 
@@ -36,63 +37,56 @@ class Tutorial < Gosu::Window
     def game_over
         if @pos[0] == 1 && @pos[1] == 1 && @pos[2] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[3] == 1 && @pos[4] == 1 && @pos[5] == 1
             @xWins += 1
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[6] == 1 && @pos[7] == 1 && @pos[8] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[0] == 1 && @pos[3] == 1 && @pos[6] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[1] == 1 && @pos[4] == 1 && @pos[7] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[2] == 1 && @pos[5] == 1 && @pos[8] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[0] == 1 && @pos[4] == 1 && @pos[8] == 1
             @xWins += 1
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[6] == 1 && @pos[7] == 1 && @pos[8] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[2] == 1 && @pos[4] == 1 && @pos[6] == 1
             @xWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[0] == 2 && @pos[1] == 2 && @pos[2] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[3] == 2 && @pos[4] == 2 && @pos[5] == 2
             @oWins += 1
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[6] == 2 && @pos[7] == 2 && @pos[8] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[0] == 2 && @pos[3] == 2 && @pos[6] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[1] == 2 && @pos[4] == 2 && @pos[7] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[2] == 2 && @pos[5] == 2 && @pos[8] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[0] == 2 && @pos[4] == 2 && @pos[8] == 2
             @oWins += 1
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[6] == 2 && @pos[7] == 2 && @pos[8] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         elsif @pos[2] == 2 && @pos[4] == 2 && @pos[6] == 2
             @oWins += 1 
-            @pos = [0,0,0,0,0,0,0,0,0]
         end
+        @pos.size.times do|x|
+            if @pos[x] != 0
+                @temp += 1
+            end
+            if @temp == 9 && @display == 0
+                @draws += 1
+                @pos = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            end
+        end
+        @temp = 0
+
         if @tempXWins != @xWins
-            @displayX = 20
+            @display = 1000000
         elsif @tempOWins != @oWins
-            @displayO = 20
+            @display = 1000000
         end
         @tempXWins = @xWins
         @tempOWins = @oWins
@@ -109,51 +103,20 @@ class Tutorial < Gosu::Window
                     @pos[squareNumber(@mouse_x, @mouse_y)] = 1
                     @xTurn = false
                 end
-                # if squareNumber(@mouse_x, @mouse_y) == 0 && @pos[0] == 0
-                #     @pos[0] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 1  && @pos[1] == 0
-                #     @pos[1] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 2 && @pos[2] == 0
-                #     @pos[2] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 3 && @pos[3] == 0
-                #     @pos[3] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 4 && @pos[4] == 0
-                #     @pos[4] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 5 && @pos[5] == 0
-                #     @pos[5] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 6 && @pos[6] == 0
-                #     @pos[6] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 7 && @pos[7] == 0
-                #     @pos[7] = 1
-                # elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[8] == 0
-                #     @pos[8] = 1
-                # end
+
             elsif !@xTurn
                 if @pos[squareNumber(@mouse_x, @mouse_y)] == 0
                     @pos[squareNumber(@mouse_x, @mouse_y)] = 2
                     @xTurn = true
                 end
-                # if squareNumber(@mouse_x, @mouse_y) == 0 && @pos[0] == 0
-                #     @pos[0] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 1 && @pos[1] == 0
-                #     @pos[1] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 2 && @pos[2] == 0
-                #     @pos[2] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 3 && @pos[3] == 0
-                #     @pos[3] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 4 && @pos[4] == 0
-                #     @pos[4] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 5 && @pos[5] == 0
-                #     @pos[5] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 6 && @pos[6] == 0
-                #     @pos[6] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 7 && @pos[7] == 0
-                #     @pos[7] = 2
-                # elsif squareNumber(@mouse_x, @mouse_y) == 8 && @pos[8] == 0
-                #     @pos[8] = 2
-                # end
             end
         end 
+        while @display != 0
+            if @display == 1
+                @pos = [0, 0, 0,  0, 0, 0, 0, 0, 0]
+            end
+            @display -= 1
+        end
     end
 
     def squareNumber(x, y)
@@ -193,16 +156,9 @@ class Tutorial < Gosu::Window
                 @font.draw_text("O", @drwspts[y], @drwspts[(y + 1)], ZOrder::LETTERS, 9, 9, Gosu::Color::BLACK)
             end
         end
-        while @displayX != 0
-            @font.draw_text("X Wins!", 320, 240, ZOrder::LETTERS, 1, 1, Gosu::Color::BLUE)
-            @displayX -= 1
-        end
-        while @displayO != 0
-            @font.draw_text("O Wins!", 320, 240, ZOrder::LETTERS, 1, 1, Gosu::Color::RED)
-            @displayO -= 1
-        end
-        @font.draw_text("X: #{@xWins}", 20, 50, ZOrder::LETTERS, 5, 5, Gosu::Color::BLUE)
-        @font.draw_text("O: #{@oWins}", 20, 70, ZOrder::LETTERS, 5, 5, Gosu::Color::RED)
+        @font.draw_text("X: #{@xWins}", 20, 20, ZOrder::UI, 1, 1, Gosu::Color::BLACK)
+        @font.draw_text("O: #{@oWins}", 60, 20, ZOrder::UI, 1, 1, Gosu::Color::BLACK)
+        @font.draw_text("Draws: #{@draws}", 100, 20, ZOrder::UI, 1, 1, Gosu::Color::BLACK)
     end
 end
 
